@@ -26,26 +26,30 @@ const CurrenciesList = () => {
     <StyledText>NO HAY MONEDAS</StyledText>
   );
 
-  return currencies.length ? (
+  return (
     <ScrollView>
-      <Average>
-        <StyledBoldText>Average:</StyledBoldText>
-        <AverageText>{average}</AverageText>
-      </Average>
-      {currencies.map(currency => (
-        <Currency
-          currency={currency.details}
-          key={currency.name}
-          name={currency.name}
-        />
-      ))}
+      {currencies.length ? (
+        <>
+          <Average>
+            <StyledBoldText>Average:</StyledBoldText>
+            <AverageText>{average}</AverageText>
+          </Average>
+          {currencies.map(currency => (
+            <>
+              <Currency
+                currency={currency.details}
+                key={currency.name}
+                name={currency.name}
+              />
+            </>
+          ))}
+        </>
+      ) : emptyOrLoading}
       <RefreshControl
         onRefresh={GetCurrencies}
         refreshing={loadingCurrencies}
       />
     </ScrollView>
-  ) : (
-    emptyOrLoading
   );
 };
 
